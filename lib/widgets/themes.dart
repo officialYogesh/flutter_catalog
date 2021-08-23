@@ -9,6 +9,7 @@ class MyThemes {
       appBarTheme: AppBarTheme(
         color: Colors.white,
         elevation: 0.0,
+        centerTitle: true,
         iconTheme: IconThemeData(color: Colors.black),
         textTheme: Theme.of(context).textTheme,
       ));
