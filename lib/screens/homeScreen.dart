@@ -52,13 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
     //   drawer: MainDrawer(),
     // );
     return Scaffold(
-      backgroundColor: MyThemes.cream,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: MyThemes.darkBluish,
+        backgroundColor: context.theme.buttonColor,
         onPressed: () {
           Navigator.pushNamed(context, MyRoutes.cartRoute);
         },
-        child: Icon(CupertinoIcons.cart),
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
       ),
       body: SafeArea(
         child: Container(
