@@ -1,6 +1,11 @@
-import 'package:flutter_catalog/models/catalog.dart';
+import 'package:flutter_catalog/models/catalogModel.dart';
 
 class CartModel {
+  // * Making class singleton i.e. only one instance will be created and shared
+  static final cartModel = CartModel._internal();
+  CartModel._internal();
+  factory CartModel() => cartModel;
+
   // Catalog field
   late CatalogModel _catalog;
 
