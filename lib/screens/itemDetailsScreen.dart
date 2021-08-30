@@ -29,8 +29,8 @@ class ItemDetailsScreen extends StatelessWidget {
                         backgroundColor:
                             MaterialStateProperty.all(MyThemes.darkBluish),
                         shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.make())
-                .wh(100, 50)
+                    child: "Add to cart".text.make())
+                .wh(120, 50)
           ],
         ).p32(),
       ),
