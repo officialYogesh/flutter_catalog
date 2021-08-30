@@ -51,15 +51,27 @@ class ItemDetailsScreen extends StatelessWidget {
                     child: Container(
                       color: Colors.white,
                       width: context.screenWidth,
-                      child: Column(
-                        children: [
-                          catalog.name.text.xl4
-                              .color(MyThemes.darkBluish)
-                              .bold
-                              .make(),
-                          catalog.desc.text.gray500.subtitle2(context).xl.make()
-                        ],
-                      ).p64(),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            catalog.name.text.xl4
+                                .color(MyThemes.darkBluish)
+                                .bold
+                                .make(),
+                            catalog.desc.text.gray500
+                                .subtitle2(context)
+                                .xl
+                                .make(),
+                            10.heightBox,
+                            "Invidunt erat eirmod amet clita consetetur, magna dolore justo erat sanctus ut rebum erat dolore. Accusam dolores est dolore stet diam lorem, rebum sadipscing aliquyam aliquyam et lorem eos dolores at, justo aliquyam takimata diam lorem diam dolores voluptua dolor. Justo takimata kasd nonumy amet voluptua clita ipsum dolor, clita."
+                                .text
+                                .gray500
+                                .subtitle2(context)
+                                .make()
+                                .px32()
+                          ],
+                        ).py64(),
+                      ),
                     )))
           ],
         ),
