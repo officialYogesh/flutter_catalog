@@ -11,6 +11,11 @@ class CatalogModel {
     //     image:
     //         "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1604021661000")
   ];
+
+  static Item getItemById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  static Item getItemByPosition(int pos) => items[pos];
 }
 
 class Item {
