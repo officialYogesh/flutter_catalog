@@ -23,7 +23,7 @@ class __AddToCartState extends State<AddToCart> {
 
   @override
   Widget build(BuildContext context) {
-    bool isInCart = _cart.items.contains(widget.catalog) ?? false;
+    bool isInCart = _cart.items.contains(widget.catalog) ? true : false;
     return ElevatedButton(
         onPressed: () {
           if (!isInCart) {
