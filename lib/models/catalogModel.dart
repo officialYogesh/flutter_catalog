@@ -2,9 +2,9 @@ import 'dart:convert';
 
 class CatalogModel {
   // * Making class singleton i.e. only one instance will be created and shared
-  static final catalogModel = CatalogModel._internal();
-  CatalogModel._internal();
-  factory CatalogModel() => catalogModel;
+  // static final catalogModel = CatalogModel._internal();
+  // CatalogModel._internal();
+  // factory CatalogModel() => catalogModel;
 
   static List<Item> items = [
     // Item(
