@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_catalog/models/cartModel.dart';
 
 import 'dart:convert';
 
 import 'package:velocity_x/velocity_x.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter_catalog/core/AppStore.dart';
 
@@ -13,11 +13,9 @@ import 'package:flutter_catalog/utils/routs.dart';
 
 import 'package:flutter_catalog/models/catalogModel.dart';
 
-import 'package:flutter_catalog/widgets/drawer.dart';
-import 'package:flutter_catalog/widgets/item_widget.dart';
+// import 'package:flutter_catalog/widgets/drawer.dart';
 import 'package:flutter_catalog/widgets/home_widgets/catalogHeader.dart';
 import 'package:flutter_catalog/widgets/home_widgets/catalogList.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final jsonHomeDataUrl = "https://api.jsonbin.io/b/604dbddb683e7e079c4eefd3";
   @override
   void initState() {
     super.initState();
@@ -97,8 +96,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void loadHomeData() async {
     await Future.delayed(Duration(seconds: 1));
-    final catalogJson =
-        await rootBundle.loadString("assets/files/catalog.json");
+    // final catalogJson =
+    //     await rootBundle.loadString("assets/files/catalog.json");
+    final response = await http.get(Uri.parse(jsonHomeDataUrl));
+    final catalogJson = response.body;
     final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
     CatalogModel.items = List.from(productsData)
