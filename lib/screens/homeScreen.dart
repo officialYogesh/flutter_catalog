@@ -63,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, store, status) => FloatingActionButton(
           backgroundColor: context.theme.buttonColor,
           onPressed: () {
-            Navigator.pushNamed(context, MyRoutes.cartRoute);
+            // Navigator.pushNamed(context, MyRoutes.cartRoute);
+            context.vxNav.push(Uri.parse(MyRoutes.cartRoute));
           },
           child: Icon(
             CupertinoIcons.cart,
