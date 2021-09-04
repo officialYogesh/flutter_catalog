@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
+import 'package:flutter_catalog/models/cartModel.dart';
 
 import 'dart:convert';
 
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:flutter_catalog/core/AppStore.dart';
 
 import 'package:flutter_catalog/utils/routs.dart';
 
@@ -15,6 +17,7 @@ import 'package:flutter_catalog/widgets/drawer.dart';
 import 'package:flutter_catalog/widgets/item_widget.dart';
 import 'package:flutter_catalog/widgets/home_widgets/catalogHeader.dart';
 import 'package:flutter_catalog/widgets/home_widgets/catalogList.dart';
+import 'package:flutter_catalog/widgets/themes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -51,17 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
     //             )),
     //   drawer: MainDrawer(),
     // );
+
+    final _cart = (VxState.store as AppStore).cart;
+
     return Scaffold(
       backgroundColor: context.canvasColor,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: context.theme.buttonColor,
-        onPressed: () {
-          Navigator.pushNamed(context, MyRoutes.cartRoute);
-        },
-        child: Icon(
-          CupertinoIcons.cart,
-          color: Colors.white,
-        ),
+      floatingActionButton: VxBuilder<AppStore>(
+        mutations: {AddToCartMutation, RemoveFromCartMutation},
+        builder: (context, store, status) => FloatingActionButton(
+          backgroundColor: context.theme.buttonColor,
+          onPressed: () {
+            Navigator.pushNamed(context, MyRoutes.cartRoute);
+          },
+          child: Icon(
+            CupertinoIcons.cart,
+            color: Colors.white,
+          ),
+        ).badge(
+            color: Colors.white,
+            size: 22.0,
+            count: _cart.items.length,
+            textStyle:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
       ),
       body: SafeArea(
         child: Container(
