@@ -17,7 +17,7 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context, on: [AddToCartMutation]);
+    VxState.watch(context, on: [AddToCartMutation, RemoveFromCartMutation]);
     final CartModel _cart = (VxState.store as AppStore).cart;
     bool isInCart = _cart.items.contains(catalog) ? true : false;
     return ElevatedButton(

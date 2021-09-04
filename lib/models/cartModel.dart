@@ -29,11 +29,6 @@ class CartModel {
   // Get total price
   num get totalPrice =>
       items.fold(0, (total, currentItem) => total + currentItem.price);
-
-  // Method to remove items
-  void removeItem(Item item) {
-    _itemIds.remove(item.id);
-  }
 }
 
 class AddToCartMutation extends VxMutation<AppStore> {
@@ -44,5 +39,16 @@ class AddToCartMutation extends VxMutation<AppStore> {
   @override
   perform() {
     store!.cart._itemIds.add(item.id);
+  }
+}
+
+class RemoveFromCartMutation extends VxMutation<AppStore> {
+  final Item item;
+
+  RemoveFromCartMutation(this.item);
+
+  @override
+  perform() {
+    store!.cart._itemIds.remove(item.id);
   }
 }
