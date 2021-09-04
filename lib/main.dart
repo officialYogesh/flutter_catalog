@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/core/AppStore.dart';
+import 'package:flutter_catalog/screens/itemDetailsScreen.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -22,19 +23,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       // home: HomeScreen(),
       themeMode: ThemeMode.system,
       theme: MyThemes.lightTheme(context),
       darkTheme: MyThemes.darkTheme(context),
-      initialRoute: MyRoutes.homeRoute,
-      routes: {
-        "/": (contex) => LoginScreen(),
-        MyRoutes.homeRoute: (contex) => HomeScreen(),
-        MyRoutes.loginRoute: (contex) => LoginScreen(),
-        MyRoutes.cartRoute: (context) => CartScreen()
-      },
+      routeInformationParser: VxInformationParser(),
+      routerDelegate: VxNavigator(routes: {
+        "/": (_, __) => MaterialPage(child: LoginScreen()),
+        MyRoutes.loginRoute: (_, __) => MaterialPage(child: LoginScreen()),
+        MyRoutes.homeRoute: (_, __) => MaterialPage(child: HomeScreen()),
+        MyRoutes.itemDetailsRoute: (uri, params) {
+          final catalog = (VxState.store as AppStore)
+              .catalog
+              .getItemById(int.parse(uri.queryParameters["id"].toString()));
+          return MaterialPage(
+              child: ItemDetailsScreen(
+            catalog: catalog,
+          ));
+        },
+        MyRoutes.cartRoute: (_, __) => MaterialPage(child: CartScreen())
+      }),
+      // initialRoute: MyRoutes.homeRoute,
+      // routes: {
+      //   "/": (contex) => LoginScreen(),
+      //   MyRoutes.homeRoute: (contex) => HomeScreen(),
+      //   MyRoutes.loginRoute: (contex) => LoginScreen(),
+      //   MyRoutes.cartRoute: (context) => CartScreen()
+      // },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/utils/routs.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -18,11 +19,17 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
+        final String catalogId = catalog.id.toString();
         return InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ItemDetailsScreen(catalog: catalog))),
+            onTap: () => context.vxNav.push(
+                Uri(
+                    path: MyRoutes.itemDetailsRoute,
+                    queryParameters: {"id": catalogId}),
+                params: catalog),
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => ItemDetailsScreen(catalog: catalog))),
             child: CatalogItem(catalog: catalog));
       },
     );
