@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catalog/core/AppStore.dart';
 
 import 'package:velocity_x/velocity_x.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'package:flutter_catalog/utils/routs.dart';
 import 'package:flutter_catalog/widgets/themes.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_catalog/screens/loginScreen.dart';
 import 'package:flutter_catalog/screens/cartScreen.dart';
 
 void main() {
+  // * To remove # from url
+  setPathUrlStrategy();
   runApp(VxState(store: AppStore(), child: MyApp()));
 }
 
