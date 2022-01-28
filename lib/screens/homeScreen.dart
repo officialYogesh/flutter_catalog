@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_catalog/models/cartModel.dart';
+import 'package:flutter_catalog/widgets/drawer.dart';
 
 import 'dart:convert';
 
@@ -57,6 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final _cart = (VxState.store as AppStore).cart;
 
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.transparent),
+      drawer: MainDrawer(),
       backgroundColor: context.canvasColor,
       floatingActionButton: VxBuilder<AppStore>(
         mutations: {AddToCartMutation, RemoveFromCartMutation},
